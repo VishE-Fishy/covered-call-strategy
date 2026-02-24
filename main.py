@@ -47,8 +47,8 @@ data = data['Close']
 # Step 3: Calculate Volatility
 # ---------------------------
 # Calculate daily returns
-data_df = pd.DataFrame(data)
-data_df.rename(columns={'Close': 'Price'}, inplace=True)
+# Explicitly create a DataFrame with a 'Price' column to avoid issues
+data_df = pd.DataFrame({'Price': data})
 data_df['Returns'] = np.log(data_df['Price'] / data_df['Price'].shift(1))
 
 # Calculate rolling volatility (annualized)
